@@ -2,7 +2,7 @@ const gpio = require('linkit-smart-gpio')
 
 gpio.register('2', 'output')
 
-let state = false
+var state = false
 
 setInterval(() => {
   gpio.send('2', function() {
