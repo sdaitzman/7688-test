@@ -4,7 +4,7 @@ gpio.register('2', 'output')
 
 var state = false
 
-setInterval(() => {
+setInterval(function() {
   gpio.send('2', function() {
     if(state) {
       gpio.high()
