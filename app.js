@@ -1,15 +1,12 @@
-const gpio = require('linkit-smart-gpio')
+var m = require('mraa');
+var ledState = true;
+var myLed = new m.Gpio(44);
 
-gpio.register('2', 'output')
+myLed.dir(m.DIR_OUT);
 
-var state = false
-
-setInterval(function() {
-  gpio.send('2', function() {
-    if(state) {
-      gpio.high()
-    } else {
-      gpio.low()
-    }
-  })
-}, 1000)
+function periodicActivity() {
+  myLed.write(ledState ? 1 : 0);
+  ledState = !ledState;
+  setTimeout(periodicActivity, 1000);
+}
+periodicActivity(); 
